@@ -58,7 +58,7 @@ Fine-grained repository scoping
 You can scope the agent to a specific org, team, or repo set, aligning with internal data classification and regulatory boundaries.
 
 Auditable actions and decisions
-All security insights, recommendations, and (optionally) automated actions are logged to create a defensible audit trail.
+All security insights, recommendations, and (optionally) automated actions are (can) be logged to create a defensible audit trail for enterprise level environements.
 
 
 
@@ -73,7 +73,7 @@ Example Capabilities this agent can support:
 
 “Generate a weekly executive summary of SDLC security posture, including trendlines for open vs. fixed alerts.”
 
-These illustrate how an AI agent can act as a Security Architect co-pilot embedded into the SDLC, instead of yet another dashboard.
+*These illustrate how an AI agent can act as a Security Architect co-pilot embedded into the SDLC, instead of yet another dashboard.*
 
 
 
