@@ -3,51 +3,47 @@ Test repo for AI agent repo security check automation
 # Project Purpose
 This project demonstrates an AI-powered DevSecOps agent that connects to GitHub via an MCP-based integration, continuously analyzes security signals from GitHub Advanced Security, and surfaces identity-aware, governance-first recommendations without requiring over‑privileged access.
 
+
+TD;LR
+Built: Read-only AI security triage agent (Azure AI Foundry + GitHub Advanced Security/CodeQL)
+
+Does: Summarizes + prioritizes CodeQL alerts and produces remediation guidance
+
+Why: Reduces alert fatigue and standardizes security review outputs
+
+
+
 Problem This Agent Solves
 Modern engineering teams are drowning in security noise:
+-Alert fatigue from GitHub Advanced Security (SAST, code scanning, secret scanning).
+-Untriaged Dependabot alerts piling up across repos.
+-SAST and security reports that no one reads or understands in context.
+-Inconsistent or ad‑hoc security reviews across repositories and teams.
+-Risky patterns going unnoticed because no one has an end‑to‑end view of SDLC security posture.
 
-Alert fatigue from GitHub Advanced Security (SAST, code scanning, secret scanning).
+*This agent does not replace your existing tools. Instead, it orchestrates intelligence across them in a controlled, auditable, and least‑privilege way.*
 
-Untriaged Dependabot alerts piling up across repos.
 
-SAST and security reports that no one reads or understands in context.
-
-Inconsistent or ad‑hoc security reviews across repositories and teams.
-
-Risky patterns going unnoticed because no one has an end‑to‑end view of SDLC security posture.
-
-This agent does not replace your existing tools. Instead, it orchestrates intelligence across them in a controlled, auditable, and least‑privilege way.
-
-What This Agent Does
 At a high level, the AI Security Architect Agent:
+-Connects to GitHub through a constrained MCP connector configured for read‑only, least‑privilege access.
+-Ingests and correlates GitHub Advanced Security signals such as:
+-Code scanning alerts (SAST).
+-Secret scanning findings.
+-Dependabot alerts and vulnerable dependencies.
+-Continuously assesses SDLC security posture across one or more repositories.
+-Prioritizes and triages issues based on business impact, exploitability, and blast radius.
+-Can also be trained to use a knowledge base specific to an organizations regulatory framework and compliance standards.
 
-Connects to GitHub through a constrained MCP connector configured for read‑only, least‑privilege access.
-
-Ingests and correlates GitHub Advanced Security signals such as:
-
-Code scanning alerts (SAST).
-
-Secret scanning findings.
-
-Dependabot alerts and vulnerable dependencies.
-
-Continuously assesses SDLC security posture across one or more repositories.
-
-Prioritizes and triages issues based on business impact, exploitability, and blast radius.
 
 Generates actionable remediation guidance tailored to:
+-Specific repos, services, or teams.
+-Frameworks and languages used in the codebase.
+-Produces human-friendly summaries suitable for:
+-Pull request reviews.
+-Weekly security standups.
+-Executive or governance reporting.
 
-Specific repos, services, or teams.
 
-Frameworks and languages used in the codebase.
-
-Produces human-friendly summaries suitable for:
-
-Pull request reviews.
-
-Weekly security standups.
-
-Executive or governance reporting.
 
 Zero-Trust and Governance-First Design
 This project is intentionally designed to showcase identity-aware, governance-first AI integration patterns:
@@ -64,8 +60,10 @@ You can scope the agent to a specific org, team, or repo set, aligning with inte
 Auditable actions and decisions
 All security insights, recommendations, and (optionally) automated actions are logged to create a defensible audit trail.
 
-Example Capabilities
-Some example workflows this agent can support:
+
+
+
+Example Capabilities this agent can support:
 
 “Give me a prioritized list of the top security risks across all payment‑related repositories, including relevant GHAS findings and suggested fixes.”
 
@@ -77,32 +75,29 @@ Some example workflows this agent can support:
 
 These illustrate how an AI agent can act as a Security Architect co-pilot embedded into the SDLC, instead of yet another dashboard.
 
-Architecture Overview
-At a conceptual level, the system looks like this:
 
-GitHub Organization / Repositories
-Source code, pull requests, and GitHub Advanced Security findings (SAST, secrets, Dependabot).
 
-MCP-based GitHub Connector
+Architecture Overview:
+-GitHub Organization / Repositories
+-Source code, pull requests, and GitHub Advanced Security findings (SAST, secrets, Dependabot).
+-MCP-based GitHub Connector
+-Mediates all access to GitHub APIs.
+-Enforces scoped permissions and identity controls.
+-Exposes security and repo metadata as structured tools/endpoints to the agent.
+-AI Security Architect Agent
+-Interprets security signals in context of repository, team, and service boundaries.
+-Aggregates, normalizes, and prioritizes findings across repositories.
+-Generates insights, remediation steps, and reports.
+-Client Surfaces (optional)
+-CLI or chat interface for engineers.
+-Dashboards or scheduled reports for security and governance teams.
+-PR comment bots or GitHub Checks integrations.
 
-Mediates all access to GitHub APIs.
 
-Enforces scoped permissions and identity controls.
 
-Exposes security and repo metadata as structured tools/endpoints to the agent.
 
-AI Security Architect Agent
+Security note: This repo includes intentionally vulnerable demo code under demo_vulns/ to generate CodeQL findings for agent triage demonstrations. Do not reuse the demo patterns in production.
 
-Interprets security signals in context of repository, team, and service boundaries.
 
-Aggregates, normalizes, and prioritizes findings across repositories.
 
-Generates insights, remediation steps, and reports.
 
-Client Surfaces (optional)
-
-CLI or chat interface for engineers.
-
-Dashboards or scheduled reports for security and governance teams.
-
-PR comment bots or GitHub Checks integrations.
